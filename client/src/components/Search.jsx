@@ -17,7 +17,6 @@ function Search({ accessToken }) {
         }
       )
       .then((response) => {
-        console.log(response);
         setSearchResults(response.data.tracks.items);
         console.log(searchResults);
       })
@@ -41,7 +40,7 @@ function Search({ accessToken }) {
         {searchResults.map((track) => (
           <div className="track" key={track.id}>
             <p>{track.name}</p>
-            <p>Artists: {track.artists.map((artist) => artist.name)}</p>
+            <p>Artists: {track.artists.map((artist) => artist.name).join(', ')}</p>
             <img src={track.album.images[0].url} alt="" />
           </div>
         ))}

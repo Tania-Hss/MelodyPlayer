@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import "./App.css";
 import axios from "axios";
 import Search from "./components/search";
+import SignupFrom from "./pages/SignupForm";
 
 function App() {
   const [accessToken, setAccessToken] = useState("");
@@ -20,6 +21,7 @@ function App() {
   return (
     <div>
       <Search accessToken={accessToken} />
+      {/* <SignupFrom /> */}
     </div>
   );
 }
