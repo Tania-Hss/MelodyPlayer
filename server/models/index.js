@@ -1,9 +1,7 @@
-const { Pool } = require('pg')
-
+const { Pool } = require("pg");
 
 const db = new Pool({
-    database: 'melody'
-})
+  database: "melody",
+});
 
-
-module.exports = db
+module.exports = db;

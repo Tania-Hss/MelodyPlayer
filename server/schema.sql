@@ -13,4 +13,3 @@ CREATE TABLE playlists (
     created_on TIMESTAMPTZ DEFAULT current_timestamp,
     songs TEXT[]
 );
-

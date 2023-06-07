@@ -6,15 +6,18 @@ const cors = require("cors");
 
 const app = express();
 const port = process.env.HTTP_PORT || 3000;
-app.use(express.json())
+app.use(express.json());
 
 const client_id = process.env.clientId;
 const client_secret = process.env.clientSecret;
 
 app.use(cors());
 
-const usersRouter = require("./controllers/users"); 
+const usersRouter = require("./controllers/users");
+const playlistsRouter = require("./controllers/playlists");
 app.use(usersRouter);
+app.use(playlistsRouter);
+const errorHandlingMiddleware = require("./middlewares/errorHandlingMiddleware");
 
 app.get("/", async (req, res) => {
   try {
@@ -35,11 +38,12 @@ app.get("/", async (req, res) => {
     });
     const accessToken = response.data.access_token;
     res.send(accessToken);
-
   } catch (error) {
     console.error(error);
   }
 });
+
+app.use(errorHandlingMiddleware);
 
 app.listen(port, () => {
   console.log("server started on port:" + port);
