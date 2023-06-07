@@ -6,11 +6,15 @@ const cors = require("cors");
 
 const app = express();
 const port = process.env.HTTP_PORT || 3000;
+app.use(express.json())
 
 const client_id = process.env.clientId;
 const client_secret = process.env.clientSecret;
 
 app.use(cors());
+
+const usersRouter = require("./controllers/users"); 
+app.use(usersRouter);
 
 app.get("/", async (req, res) => {
   try {
@@ -31,7 +35,7 @@ app.get("/", async (req, res) => {
     });
     const accessToken = response.data.access_token;
     res.send(accessToken);
-    
+
   } catch (error) {
     console.error(error);
   }
