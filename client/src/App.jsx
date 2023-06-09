@@ -6,8 +6,9 @@ import TrackSearch from "./components/SpotifyTrackSearch";
 import LoginForm from "./pages/loginForm";
 import SignupForm from "./pages/SignupForm";
 import Playlist from "./components/Playlist";
-
+import CreatePlaylist from "./components/CreatePlaylist";
 import { useAuthentication } from "./contexts/AuthProvider";
+
 function App() {
   const [accessToken, setAccessToken] = useState("");
   const { user, logout } = useAuthentication();
@@ -51,6 +52,7 @@ function App() {
         <Route path="/login" element={<LoginForm />} />
         <Route path="/signup" element={<SignupForm />} />
         <Route path="/playlist" element={<Playlist />} />
+        <Route path="/create/playlist" element={<CreatePlaylist />} />
       </Routes>
     </div>
   );
