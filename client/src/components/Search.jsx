@@ -26,7 +26,7 @@ const Search = ({ accessToken }) => {
   };
 
   return (
-    <div>
+    <div className="search-container">
       <input
         className="search-input"
         type="text"

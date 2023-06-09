@@ -1,3 +1,3 @@
 
 INSERT INTO playlists (name, user_id, songs)
-VALUES ('car songs', 2, ARRAY['spotify:track:5BbdKBZO0TH0GhfxUfyhL9'])
+VALUES ('Workout Mix', 2, ARRAY['https://open.spotify.com/track/3GCL1PydwsLodcpv0Ll1ch', 'https://open.spotify.com/track/6j8lAie0mdUNreql5d5Ejz']);

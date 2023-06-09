@@ -24,7 +24,7 @@ router.post('/session', (req, res, next)=> {
                 console.log(user)
                 delete user.password_hash
                 req.session.user = user
-                return res.json({ message: 'Logged in successfully' })
+                return res.json({ user })
             }
             const err = new Error('Invalid email or password')
             err.status = 400

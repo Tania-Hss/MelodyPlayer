@@ -1,12 +1,13 @@
 const db = require("./index");
 
-const getAllPlaylists = () => {
-  return db.query("select * from playlists;").then((result) => result.rows);
+const getAllPlaylists = (user_id) => {
+    return db.query("SELECT * FROM playlists WHERE user_id = $1;", [user_id])
+      .then((result) => result.rows);
 };
 
 const getPlaylistById = (id) => {
   return db
-    .query(`select * from playlists where id = ${id}`)
+    .query(`SELECT * FROM playlists WHERE id = $1`, [id])
     .then((result) => result.rows);
 };
 

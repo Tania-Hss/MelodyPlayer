@@ -12,8 +12,9 @@ const {
 
 const router = express.Router();
 
-router.get("/playlists", (req, res) => {
-  return getAllPlaylists()
+router.get("/playlists/user/:id", (req, res) => {
+  const user_id = Number(req.params.id)
+  return getAllPlaylists(user_id)
     .then((playlists) => res.json(playlists))
     .catch((err) => res.status(500).json(err));
 });
@@ -83,22 +84,21 @@ router.post("/playlists/:id/songs", (req, res, next) => {
     .catch((error) => next(error));
 });
 
-
 router.delete("/playlists/:id/songs/*", (req, res, next) => {
-    const playlistId = Number(req.params.id);
-    const songUrl = req.params[0]
-    console.log(songUrl);
+  const playlistId = Number(req.params.id);
+  const songUrl = req.params[0];
+  console.log(songUrl);
 
-    return deleteSongFromPlaylist(playlistId, songUrl)
-      .then((playlist) => {
-        if (!playlist) {
-          const customError = new Error("Playlist not found");
-          customError.status = 404;
-          return next(customError);
-        }
-        res.json(playlist);
-      })
-      .catch((error) => next(error));
-  });
+  return deleteSongFromPlaylist(playlistId, songUrl)
+    .then((playlist) => {
+      if (!playlist) {
+        const customError = new Error("Playlist not found");
+        customError.status = 404;
+        return next(customError);
+      }
+      res.json(playlist);
+    })
+    .catch((error) => next(error));
+});
 
 module.exports = router;
