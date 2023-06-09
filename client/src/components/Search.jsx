@@ -2,7 +2,7 @@ import { useState } from "react";
 import axios from "axios";
 import "./Search.css";
 
-function Search({ accessToken }) {
+const Search = ({ accessToken }) => {
   const [searchInput, setSearchInput] = useState("");
   const [searchResults, setSearchResults] = useState([]);
 

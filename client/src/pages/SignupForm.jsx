@@ -1,4 +1,4 @@
-const signupFrom = () => {
+const SignupFrom = () => {
     return (
         <div>
             <h1>Signup</h1>
@@ -16,4 +16,4 @@ const signupFrom = () => {
     )
 }
 
-export default signupFrom
+export default SignupFrom

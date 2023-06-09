@@ -84,11 +84,11 @@ router.post("/playlists/:id/songs", (req, res, next) => {
 });
 
 
-router.delete("/playlists/:id/songs/:songUrl", (req, res, next) => {
+router.delete("/playlists/:id/songs/*", (req, res, next) => {
     const playlistId = Number(req.params.id);
-    const songUrl = req.params.songUrl
-    
-    console.log('deleting song with url :' ,songUrl)
+    const songUrl = req.params[0]
+    console.log(songUrl);
+
     return deleteSongFromPlaylist(playlistId, songUrl)
       .then((playlist) => {
         if (!playlist) {
