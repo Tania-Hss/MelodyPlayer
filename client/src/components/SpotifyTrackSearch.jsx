@@ -1,8 +1,8 @@
 import { useState } from "react";
 import axios from "axios";
-import "./Search.css";
+import "./SpotifyTrackSearch.css";
 
-const Search = ({ accessToken }) => {
+const TrackSearch = ({ accessToken }) => {
   const [searchInput, setSearchInput] = useState("");
   const [searchResults, setSearchResults] = useState([]);
 
@@ -49,4 +49,4 @@ const Search = ({ accessToken }) => {
   );
 }
 
-export default Search;
+export default TrackSearch;

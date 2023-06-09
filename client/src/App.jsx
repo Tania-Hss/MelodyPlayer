@@ -2,9 +2,10 @@ import { useState, useEffect } from "react";
 import { Routes, Route, NavLink } from "react-router-dom";
 import "./App.css";
 import axios from "axios";
-import Search from "./components/search";
+import TrackSearch from "./components/SpotifyTrackSearch";
 import LoginForm from "./pages/loginForm";
 import SignupForm from "./pages/SignupForm";
+import Playlist from "./components/Playlist";
 
 import { useAuthentication } from "./contexts/AuthProvider";
 function App() {
@@ -29,7 +30,9 @@ function App() {
             <NavLink className="link" to="/">
               Home
             </NavLink>
-
+            <NavLink className="link" to="/playlist">
+              Playlists
+            </NavLink>
             <button onClick={logout}>Logout</button>
           </>
         ) : (
@@ -44,9 +47,10 @@ function App() {
         )}
       </nav>
       <Routes>
-        <Route path="/" element={<Search accessToken={accessToken} />} />
+        <Route path="/" element={<TrackSearch accessToken={accessToken} />} />
         <Route path="/login" element={<LoginForm />} />
         <Route path="/signup" element={<SignupForm />} />
+        <Route path="/playlist" element={<Playlist />} />
       </Routes>
     </div>
   );
