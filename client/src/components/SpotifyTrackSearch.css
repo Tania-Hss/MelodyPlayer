@@ -1,15 +1,24 @@
-.search-results {
-    border: 1px solid orange;
-}
 
-.track {
-    border: 1px solid red;
+
+.track-results {
+   display: flex;
+   flex-direction: column;
+    margin-left: 30px;
+   /* align-items: center; */
 }
 
 .search-input {
     width: 11rem;
+    margin-top: 30px;
+    margin-left: 30px;
+}
+.track:hover{
+    background-color: #685D79;
 }
 
-.search-container{
-    text-align: center;
+
+img{
+    width: 150px;
+    height: 150px;
 }
+

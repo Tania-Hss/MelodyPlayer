@@ -1,3 +1,5 @@
+import './Playlist.css';
+
 const DeletePlaylistButton = ({ playlistId, onDelete }) => {
   const handleDelete = async () => {
     try {
@@ -17,7 +19,7 @@ const DeletePlaylistButton = ({ playlistId, onDelete }) => {
     }
   };
 
-  return <button onClick={handleDelete}>Delete Playlist</button>;
+  return <button className='deletebutton' onClick={handleDelete}>Delete Playlist</button>;
 };
 
 export default DeletePlaylistButton;

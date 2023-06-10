@@ -1,0 +1,10 @@
+.playlist-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  
+}
+
+.playlists {
+  border: 1px grey solid;
+}

@@ -1,6 +1,8 @@
 import { useState } from "react";
 import axios from "axios";
 import "./SpotifyTrackSearch.css";
+import AddingSongsToPlaylist  from "./AddingSongsToPlaylist";
+
 
 const TrackSearch = ({ accessToken }) => {
   const [searchInput, setSearchInput] = useState("");
@@ -25,6 +27,11 @@ const TrackSearch = ({ accessToken }) => {
       });
   };
 
+
+  const handleAddingSongs = (songUrl) => {
+    AddingSongsToPlaylist(songUrl)
+  }
+
   return (
     <div className="search-container">
       <input
@@ -35,18 +42,22 @@ const TrackSearch = ({ accessToken }) => {
         onChange={(e) => setSearchInput(e.target.value)}
       />
       <button onClick={handleClick}>Search</button>
-      
-      <div className="search-results">
+
+      <div className="track-results">
         {searchResults.map((track) => (
           <div className="track" key={track.id}>
             <p>{track.name}</p>
-            <p>Artists: {track.artists.map((artist) => artist.name).join(', ')}</p>
+            <p>
+              Artists: {track.artists.map((artist) => artist.name).join(", ")}
+            </p>
             <img src={track.album.images[0].url} alt="" />
+            <p>Album Name:{track.album.name}</p>
+            <button onClick={() => handleAddingSongs(track.external_urls.spotify)}>Add to playlist</button>
           </div>
         ))}
       </div>
     </div>
   );
-}
+};
 
 export default TrackSearch;

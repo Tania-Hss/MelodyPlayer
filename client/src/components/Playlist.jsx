@@ -2,13 +2,15 @@ import { useState, useEffect } from "react";
 import { useAuthentication } from "../contexts/AuthProvider";
 import { NavLink } from "react-router-dom";
 import DeletePlaylistButton from "./DeletePlaylist";
+import EditPlaylistName from "./EditPlaylistName";
+import './Playlist.css'
 
 const Playlist = () => {
   const { user } = useAuthentication();
   //   console.log('user is',user);
   const { id } = user.user;
   const [playlists, setPlaylists] = useState([]);
-  
+  //   console.log("playlists is", playlists);
   useEffect(() => {
     const fetchPlaylists = async () => {
       try {
@@ -29,10 +31,8 @@ const Playlist = () => {
     };
     if (user) {
       fetchPlaylists();
-      
     }
   }, [user]);
-
 
   const handleDeletePlaylist = (playlistId) => {
     setPlaylists((prevPlaylists) =>
@@ -41,20 +41,32 @@ const Playlist = () => {
   };
 
   return (
-    <div>
+    <div className="playlist-container">
       <h1>My Playlists</h1>
-      <NavLink className="link" to="/create/playlist">
-        create playlist
-      </NavLink>
 
       {playlists.map((playlist) => (
-        <div key={playlist.id}>
+        <div key={playlist.id} className="playlists">
           <h3>{playlist.name}</h3>
-          <p>Created on: {playlist.created_on}</p>
-          <DeletePlaylistButton
-            playlistId={playlist.id}
-            onDelete={handleDeletePlaylist}
-          />
+          <p>Created on: {new Date(playlist.created_on).toLocaleString()}</p>
+          {playlist.songs && playlist.songs.length > 0 ? (
+              <ul>
+              {playlist.songs.map((song, index) => (
+                <li key={index}>
+                  <a href={song}>{song}</a>
+                </li>
+              ))}
+            </ul>
+          ) : (
+              <p>No songs available yet.</p>
+              )}
+              <DeletePlaylistButton
+                playlistId={playlist.id}
+                onDelete={handleDeletePlaylist}
+              />
+              <EditPlaylistName
+                playlistId={playlist.id}
+                currentName={playlist.name}
+              />
         </div>
       ))}
     </div>

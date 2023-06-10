@@ -1,9 +1,11 @@
 import { useAuthentication } from "../contexts/AuthProvider";
 import { useNavigate } from "react-router-dom";
-
+import { useState } from "react";
+import "./LoginForm.css";
 const LoginForm = () => {
   const { login } = useAuthentication();
   const navigate = useNavigate();
+  const [error, setError] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -11,21 +13,27 @@ const LoginForm = () => {
     try {
       await login(fields);
       navigate("/");
-    } catch (err) {
-      console.log(err);
+    } catch (error) {
+      if (error) {
+        setError(error.message);
+      } else {
+        setError("An error occurred. Please try again.");
+      }
     }
   };
 
   return (
-    <div>
+    <div className="login">
       <h2>Login</h2>
       <form onSubmit={handleSubmit}>
-      <input type="text" name="email" placeholder="email" />
-      <input type="password" name="password" placeholder="password" />
-      <input type="submit" value="Login" />
-    </form>
+        <label htmlFor="email">Email:</label>
+        <input type="text" name="email" placeholder="email" />
+        <label htmlFor="password">Password:</label>
+        <input type="password" name="password" placeholder="password" />
+        <input type="submit" value="Login" />
+        {error && <p className="error">{error}</p>}
+      </form>
     </div>
-    
   );
 };
 

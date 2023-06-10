@@ -9,6 +9,8 @@ import Playlist from "./components/Playlist";
 import CreatePlaylist from "./components/CreatePlaylist";
 import { useAuthentication } from "./contexts/AuthProvider";
 
+// { email: 'emily.hailley@gmail.com', password: 'Mandelampake2!' }
+
 function App() {
   const [accessToken, setAccessToken] = useState("");
   const { user, logout } = useAuthentication();
@@ -28,11 +30,15 @@ function App() {
       <nav>
         {user ? (
           <>
+            <span>Welcome, {user.user.username}</span>
             <NavLink className="link" to="/">
               Home
             </NavLink>
             <NavLink className="link" to="/playlist">
               Playlists
+            </NavLink>
+            <NavLink className="link" to="/create/playlist">
+              Create Playlist
             </NavLink>
             <button onClick={logout}>Logout</button>
           </>
