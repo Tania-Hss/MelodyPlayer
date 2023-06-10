@@ -40,6 +40,14 @@ const Playlist = () => {
     );
   };
 
+  const handleNameUpdate = (playlistId, newName) => {
+    setPlaylists((prevPlaylists) =>
+      prevPlaylists.map((playlist) =>
+        playlist.id === playlistId ? { ...playlist, name: newName } : playlist
+      )
+    );
+  };
+
   return (
     <div className="playlist-container">
       <h1>My Playlists</h1>
@@ -66,6 +74,7 @@ const Playlist = () => {
               <EditPlaylistName
                 playlistId={playlist.id}
                 currentName={playlist.name}
+                onUpdate={(newName) => handleNameUpdate(playlist.id, newName)}
               />
         </div>
       ))}

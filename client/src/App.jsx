@@ -8,7 +8,7 @@ import SignupForm from "./pages/SignupForm";
 import Playlist from "./components/Playlist";
 import CreatePlaylist from "./components/CreatePlaylist";
 import { useAuthentication } from "./contexts/AuthProvider";
-
+import GenreDisplay from "./components/GenreDisplay";
 // { email: 'emily.hailley@gmail.com', password: 'Mandelampake2!' }
 
 function App() {
@@ -40,6 +40,9 @@ function App() {
             <NavLink className="link" to="/create/playlist">
               Create Playlist
             </NavLink>
+            <NavLink className="link" to="/genre">
+              Genres
+            </NavLink>
             <button onClick={logout}>Logout</button>
           </>
         ) : (
@@ -59,6 +62,7 @@ function App() {
         <Route path="/signup" element={<SignupForm />} />
         <Route path="/playlist" element={<Playlist />} />
         <Route path="/create/playlist" element={<CreatePlaylist />} />
+        <Route path="/genre" element={<GenreDisplay accessToken={accessToken} />} />
       </Routes>
     </div>
   );

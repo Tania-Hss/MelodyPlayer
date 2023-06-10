@@ -1,6 +1,8 @@
 import { useState } from "react";
 import './Playlist.css'
-const EditPlaylistName = ({ playlistId, currentName }) => {
+
+
+const EditPlaylistName = ({ playlistId, currentName, onUpdate }) => {
   const [newName, setNewName] = useState(currentName);
   const [showPopup, setShowPopup] = useState(false);
 
@@ -20,7 +22,7 @@ const EditPlaylistName = ({ playlistId, currentName }) => {
 
       if (response.status === 200) {
         console.log("name updated yaay");
-      
+        onUpdate(newName);
       } else {
         throw new Error("Failed to update");
       }
